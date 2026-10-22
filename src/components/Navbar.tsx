@@ -1,46 +1,61 @@
-import {Text, View, StyleSheet} from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-export function Navbar() {
-    return (
-        <View style={styles.Navbar}>
-        <View style={{alignItems: "center"}}>
-        <Ionicons name="globe-sharp" size={20} color="orange" ></Ionicons>
-        <Text style={styles.textoNavbar}>Home</Text>
-        </View>
+const itens: {
+  rota: string;
+  label: string;
+  icone: keyof typeof Ionicons.glyphMap;
+}[] = [
+  { rota: "index", label: "Home", icone: "globe-sharp" },
+  { rota: "teste", label: "Test", icone: "bug-outline" },
+  { rota: "velocidade", label: "Speed", icone: "speedometer-outline" },
+  { rota: "configuracoes", label: "Settings", icone: "settings-outline" },
+];
 
-        <View style={{alignItems: "center"}}>
-        <Ionicons name="bug-outline" size={20} color="#6e6e6e" ></Ionicons>
-        <Text style={styles.textoNavbar}>Test</Text>
-        </View>
+type NavbarProps = {
+  state: { index: number };
+  navigation: { navigate: (rota: string) => void };
+};
 
-        <View style={{alignItems: "center"}}>
-        <Ionicons name="speedometer-outline" size={20} color="#6e6e6e" ></Ionicons>
-        <Text style={styles.textoNavbar}>Speed</Text>
-        </View>
-
-        <View style={{alignItems: "center"}}>
-        <Ionicons name="settings-outline" size={20} color="#6e6e6e" ></Ionicons>
-        <Text style={styles.textoNavbar}>Settings</Text>
-        </View>
-
-        </View>
-    );
+export function Navbar({ state, navigation }: NavbarProps) {
+  return (
+    <View style={styles.Navbar}>
+      {itens.map((item, i) => {
+        const ativo = state.index === i;
+        return (
+          <TouchableOpacity
+            key={item.rota}
+            style={{ alignItems: "center" }}
+            onPress={() => navigation.navigate(item.rota)}
+          >
+            <Ionicons
+              name={item.icone}
+              size={20}
+              color={ativo ? "#ff6600" : "#6e6e6e"}
+            />
+            <Text style={styles.textoNavbar}>{item.label}</Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
     Navbar: {
         position: "absolute",
-        bottom: 0,
+        bottom: 20,
         left: 20,
         right: 20,
 
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "#bfbfbf",
+        backgroundColor: "#ffffff00",
         padding: 15,
         borderRadius: 20,
+        borderWidth: 1,
+        borderColor: "#d1e6ff14",
     },
 
     textoNavbar: {
