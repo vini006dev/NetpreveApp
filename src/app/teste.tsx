@@ -13,7 +13,7 @@ export default function Velocidade() {
       style={{ flex: 1 }}
     >
 
-    <Topbar titulo="NET PREVE - QUALIDADE DA INTERNET" subtitulo="Wifi test" icone="settings" />
+
 
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={{ padding: 32, gap: 14 }}>
