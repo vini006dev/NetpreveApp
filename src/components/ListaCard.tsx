@@ -5,7 +5,6 @@ import { cores } from "@/constants/theme";
 
 type Props = { titulo?: string; children: ReactNode };
 
-/** Card com título opcional e divisores entre os itens. */
 export function ListaCard({ titulo, children }: Props) {
   const itens = Children.toArray(children);
 
@@ -22,7 +21,7 @@ export function ListaCard({ titulo, children }: Props) {
 }
 
 const styles = StyleSheet.create({
-  titulo: { color: cores.texto, fontSize: 16, fontWeight: "700", paddingTop: 12, paddingBottom: 4 },
+  titulo: { color: cores.texto, fontSize: 15, fontWeight: "700", paddingTop: 10, paddingBottom: 4 },
   item: { paddingVertical: 14 },
-  divisor: { borderTopWidth: 1, borderColor: cores.borda },
+  divisor: { borderTopWidth: 1, borderColor: "rgba(255,255,255,0.07)" },
 });

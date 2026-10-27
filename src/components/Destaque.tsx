@@ -9,13 +9,20 @@ type Props = {
   texto: string;
 };
 
-/** Mensagem curta em destaque (ex.: "Pode dar o play. Está tudo fluindo."). */
 export function Destaque({ icone = "sparkles-outline", titulo, texto }: Props) {
   return (
-    <GlassCard>
-      <View style={styles.titulo}>
-        <Ionicons accessibilityElementsHidden importantForAccessibility="no" name={icone} size={18} color={cores.ciano} />
-        <Text style={styles.textoTitulo}>{titulo}</Text>
+    <GlassCard variante="ciano">
+      <View style={styles.cabecalho}>
+        <View style={styles.iconeWrap}>
+          <Ionicons
+            accessibilityElementsHidden
+            importantForAccessibility="no"
+            name={icone}
+            size={16}
+            color={cores.ciano}
+          />
+        </View>
+        <Text style={styles.titulo}>{titulo}</Text>
       </View>
       <Text style={styles.texto}>{texto}</Text>
     </GlassCard>
@@ -23,7 +30,15 @@ export function Destaque({ icone = "sparkles-outline", titulo, texto }: Props) {
 }
 
 const styles = StyleSheet.create({
-  titulo: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 6 },
-  textoTitulo: { color: cores.texto, fontSize: 15, fontWeight: "700", flex: 1 },
-  texto: { color: cores.textoSuave, fontSize: 13, lineHeight: 19 },
+  cabecalho: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 8 },
+  iconeWrap: {
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    backgroundColor: "rgba(0,212,255,0.12)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  titulo: { color: cores.texto, fontSize: 15, fontWeight: "700", flex: 1 },
+  texto: { color: cores.textoSuave, fontSize: 13, lineHeight: 20 },
 });

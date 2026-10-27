@@ -5,7 +5,7 @@ import { cores } from "@/constants/theme";
 const ETAPAS = ["Latência", "Download", "Upload"];
 
 type Props = {
-  etapa: 0 | 1 | 2; // etapa atual
+  etapa: 0 | 1 | 2;
   progresso: number; // 0 a 1
 };
 
@@ -18,24 +18,25 @@ export function ProgressoTeste({ etapa, progresso }: Props) {
       </View>
 
       <View style={styles.trilho}>
-        <View style={[styles.barra, { width: `${progresso * 100}%` }]} />
+        <View style={[styles.barra, { width: `${progresso * 100}%` as any }]} />
       </View>
 
       <View style={styles.linha}>
         {ETAPAS.map((nome, i) => {
-          const feita = i < etapa;
-          const atual = i === etapa;
+          const feita   = i < etapa;
+          const atual   = i === etapa;
+          const pendente = !feita && !atual;
           return (
             <View key={nome} style={styles.etapa}>
-              {feita && <Ionicons name="checkmark" size={13} color={cores.ciano} />}
-              {atual && <Ionicons name="arrow-down" size={13} color={cores.texto} />}
-              {!feita && !atual && <Ionicons name="arrow-up" size={13} color={cores.textoMudo} />}
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: feita ? cores.ciano : atual ? cores.texto : cores.textoMudo,
-                }}
-              >
+              {feita   && <Ionicons name="checkmark"  size={13} color={cores.ciano}     />}
+              {atual   && <Ionicons name="arrow-down" size={13} color={cores.texto}     />}
+              {pendente && <Ionicons name="arrow-up"  size={13} color={cores.textoMudo} />}
+              <Text style={[
+                styles.etapaTexto,
+                feita  && { color: cores.ciano },
+                atual  && { color: cores.texto },
+                pendente && { color: cores.textoMudo },
+              ]}>
                 {nome}
               </Text>
             </View>
@@ -49,8 +50,22 @@ export function ProgressoTeste({ etapa, progresso }: Props) {
 const styles = StyleSheet.create({
   linha: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   suave: { color: cores.textoSuave, fontSize: 13 },
-  pct: { color: cores.ciano, fontSize: 14, fontWeight: "700" },
-  trilho: { height: 5, borderRadius: 3, backgroundColor: "rgba(255,255,255,0.1)", overflow: "hidden" },
-  barra: { height: 5, borderRadius: 3, backgroundColor: cores.ciano },
+  pct:   { color: cores.ciano, fontSize: 14, fontWeight: "700" },
+  trilho: {
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    overflow: "hidden",
+  },
+  barra: {
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: cores.ciano,
+    shadowColor: cores.ciano,
+    shadowOpacity: 0.8,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 0 },
+  },
   etapa: { flexDirection: "row", alignItems: "center", gap: 4 },
+  etapaTexto: { fontSize: 13 },
 });

@@ -16,15 +16,27 @@ export function Botao({ titulo, onPress, icone, variante = "primario", desabilit
 
   return (
     <TouchableOpacity
-      activeOpacity={0.85}
+      activeOpacity={0.82}
       onPress={onPress}
       disabled={desabilitado}
       accessibilityRole="button"
       accessibilityLabel={titulo}
       accessibilityState={{ disabled: !!desabilitado }}
-      style={[styles.base, primario ? styles.primario : styles.secundario, desabilitado && { opacity: 0.5 }]}
+      style={[
+        styles.base,
+        primario ? styles.primario : styles.secundario,
+        desabilitado && styles.desabilitado,
+      ]}
     >
-      {icone && <Ionicons accessibilityElementsHidden importantForAccessibility="no" name={icone} size={20} color={cor} />}
+      {icone && (
+        <Ionicons
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+          name={icone}
+          size={20}
+          color={cor}
+        />
+      )}
       <Text style={[styles.texto, { color: cor }]}>{titulo}</Text>
     </TouchableOpacity>
   );
@@ -32,9 +44,9 @@ export function Botao({ titulo, onPress, icone, variante = "primario", desabilit
 
 const styles = StyleSheet.create({
   base: {
-    minHeight: 56, // cresce junto com a fonte (RNF05)
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    minHeight: 52,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
     borderRadius: raios.botao,
     flexDirection: "row",
     alignItems: "center",
@@ -44,11 +56,20 @@ const styles = StyleSheet.create({
   primario: {
     backgroundColor: cores.ciano,
     shadowColor: cores.ciano,
-    shadowOpacity: 0.35,
-    shadowRadius: 20,
+    shadowOpacity: 0.45,
+    shadowRadius: 24,
     shadowOffset: { width: 0, height: 6 },
-    elevation: 8,
+    elevation: 10,
   },
-  secundario: { backgroundColor: cores.vidro, borderWidth: 1.5, borderColor: cores.bordaControle },
+  secundario: {
+    backgroundColor: "rgba(255,255,255,0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.15)",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  desabilitado: { opacity: 0.45 },
   texto: { fontSize: 16, fontWeight: "700", textAlign: "center", flexShrink: 1 },
 });

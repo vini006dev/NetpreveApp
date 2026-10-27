@@ -15,7 +15,7 @@ export function Metrica({ rotulo, valor, unidade }: MetricaProps) {
 }
 
 const styles = StyleSheet.create({
-  rotulo: { color: cores.textoSuave, fontSize: 14, marginBottom: 4 },
-  valor: { color: cores.texto, fontSize: 28, fontWeight: "700" },
-  unidade: { color: cores.textoSuave, fontSize: 12, fontWeight: "400" },
+  rotulo: { color: cores.textoSuave, fontSize: 13, marginBottom: 4 },
+  valor:  { color: cores.texto, fontSize: 26, fontWeight: "700" },
+  unidade: { color: cores.textoSuave, fontSize: 11, fontWeight: "400" },
 });

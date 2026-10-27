@@ -1,22 +1,55 @@
-export const cores = {
-  gradiente: ["#0a1a2f", "#0b2a3f", "#071522"] as const,
-  texto: "#ffffff",
-  textoSuave: "rgba(255,255,255,0.74)",
-  textoMudo: "rgba(255,255,255,0.6)",
-  ciano: "#6ee7f0",
-  cianoSuave: "rgba(110,231,240,0.14)",
-  cianoBorda: "rgba(110,231,240,0.45)",
-  roxo: "#a99cf0",
-  ambar: "#e8c26a",
-  ambarSuave: "rgba(232,194,106,0.16)",
-  vermelho: "#f0707a",
-  vermelhoSuave: "rgba(240,112,122,0.16)",
-  vidro: "rgba(255,255,255,0.05)",
-  vidroForte: "rgba(255,255,255,0.09)",
-  borda: "rgba(209,230,255,0.14)",
-  bordaControle: "rgba(209,230,255,0.55)", // contorno de controles: >= 3:1
-  fundoNavbar: "rgba(7,21,34,0.97)",
-  textoSobreCiano: "#06222b",
-};
+/**
+ * Design tokens — Pulso Glassmorphism
+ *
+ * Paleta escura profunda com camadas de vidro translúcido,
+ * acento em ciano brilhante e suporte a glow/shadow nativo.
+ */
 
-export const raios = { card: 24, botao: 18, pequeno: 14 };
+export const cores = {
+  // ── Fundo ──────────────────────────────────────────
+  /** Gradiente do fundo principal da tela */
+  gradiente: ["#050e1a", "#071524", "#050e1a"] as const,
+
+  // ── Vidro ──────────────────────────────────────────
+  /** Superfície de card glass (fundo translúcido branco) */
+  vidro:      "rgba(255,255,255,0.07)",
+  /** Superfície de card glass mais forte (ícones, botões secundários) */
+  vidroForte: "rgba(255,255,255,0.11)",
+
+  // ── Bordas ─────────────────────────────────────────
+  /** Borda padrão dos cards glass */
+  borda:         "rgba(255,255,255,0.10)",
+  /** Borda reforçada (hover, botão secundário) */
+  bordaForte:    "rgba(255,255,255,0.16)",
+  /** Borda de controles (chips, opções) */
+  bordaControle: "rgba(255,255,255,0.10)",
+  /** Borda ciano (cards destaque, anel do diagnóstico) */
+  cianoBorda:    "rgba(0,212,255,0.28)",
+
+  // ── Ciano (acento principal) ───────────────────────
+  ciano:      "#00d4ff",
+  cianoSuave: "rgba(0,212,255,0.08)",
+
+  // ── Texto ──────────────────────────────────────────
+  texto:           "#e8f4ff",
+  textoSuave:      "rgba(232,244,255,0.60)",
+  textoMudo:       "rgba(232,244,255,0.32)",
+  textoSobreCiano: "#050e1a",
+
+  // ── Semânticas ─────────────────────────────────────
+  ambar:       "#f59e0b",
+  ambarSuave:  "rgba(245,158,11,0.12)",
+  vermelho:    "#ef4444",
+  vermelhoSuave: "rgba(239,68,68,0.12)",
+  roxo:        "#a259ff",
+
+  // ── Navbar ─────────────────────────────────────────
+  fundoNavbar: "rgba(5,14,26,0.75)",
+} as const;
+
+export const raios = {
+  card:     20,
+  botao:    16,
+  pequeno:  12,
+  chip:     13,
+} as const;

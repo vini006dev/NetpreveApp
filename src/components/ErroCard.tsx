@@ -16,19 +16,41 @@ function mensagem(erro: ApiError) {
 
 export function ErroCard({ erro, onTentar }: Props) {
   return (
-    <GlassCard style={{ gap: 16 }}>
+    <GlassCard variante="perigo" style={{ gap: 14 }}>
       <View style={styles.topo}>
-        <Ionicons accessibilityElementsHidden importantForAccessibility="no" name="cloud-offline-outline" size={22} color={cores.vermelho} />
+        <View style={styles.iconeWrap}>
+          <Ionicons
+            accessibilityElementsHidden
+            importantForAccessibility="no"
+            name="cloud-offline-outline"
+            size={20}
+            color={cores.vermelho}
+          />
+        </View>
         <Text style={styles.titulo}>Não foi possível carregar</Text>
       </View>
-      <Text style={styles.texto} accessibilityRole="alert" accessibilityLiveRegion="assertive">{mensagem(erro)}</Text>
+      <Text
+        style={styles.texto}
+        accessibilityRole="alert"
+        accessibilityLiveRegion="assertive"
+      >
+        {mensagem(erro)}
+      </Text>
       <Botao titulo="Tentar de novo" icone="refresh-outline" variante="secundario" onPress={onTentar} />
     </GlassCard>
   );
 }
 
 const styles = StyleSheet.create({
-  topo: { flexDirection: "row", alignItems: "center", gap: 10 },
-  titulo: { color: cores.texto, fontSize: 16, fontWeight: "700" },
+  topo: { flexDirection: "row", alignItems: "center", gap: 12 },
+  iconeWrap: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: "rgba(239,68,68,0.12)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  titulo: { color: cores.texto, fontSize: 15, fontWeight: "700" },
   texto: { color: cores.textoSuave, fontSize: 14, lineHeight: 20 },
 });

@@ -4,7 +4,7 @@ import { cores } from "@/constants/theme";
 type Props = {
   titulo: string;
   direita?: string;
-  direitaDestaque?: boolean; // ciano (ex.: "3 DICAS") ou apagado
+  direitaDestaque?: boolean;
 };
 
 export function SecaoTitulo({ titulo, direita, direitaDestaque }: Props) {
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     alignItems: "baseline",
     marginTop: 4,
   },
-  titulo: { color: cores.texto, fontSize: 18, fontWeight: "700" },
+  titulo: { color: cores.texto, fontSize: 17, fontWeight: "700" },
   direita: { color: cores.textoSuave, fontSize: 12, fontWeight: "500" },
 });
